@@ -1,0 +1,33 @@
+PODS:
+  - FlutterMacOS (1.0.0)
+  - Magnet (3.3.0):
+    - Sauce (~> 2.2.0)
+  - magnetica (0.0.1):
+    - FlutterMacOS
+    - Magnet
+  - Sauce (2.2.0)
+
+DEPENDENCIES:
+  - FlutterMacOS (from `Flutter/ephemeral`)
+  - magnetica (from `Flutter/ephemeral/.symlinks/plugins/magnetica/macos`)
+
+SPEC REPOS:
+  trunk:
+    - Magnet
+    - Sauce
+
+EXTERNAL SOURCES:
+  FlutterMacOS:
+    :path: Flutter/ephemeral
+  magnetica:
+    :path: Flutter/ephemeral/.symlinks/plugins/magnetica/macos
+
+SPEC CHECKSUMS:
+  FlutterMacOS: 57701585bf7de1b3fc2bb61f6378d73bbdea8424
+  Magnet: a44a5a14eecc77433cbaad1431b78f7d20725bf2
+  magnetica: c5942312396c5d994096362c99b9bb4599d1027b
+  Sauce: 3ade51738563f86b08888cf4b91ae5943012088b
+
+PODFILE CHECKSUM: 6eac6b3292e5142cfc23bdeb71848a40ec51c14c
+
+COCOAPODS: 1.11.2
