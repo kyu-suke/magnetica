@@ -17,7 +17,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
-    Magnetica().createStream();
+    Magnetica.createStream();
     super.initState();
   }
 
