@@ -14,26 +14,29 @@ class Magnetica {
 
   Magnetica._private();
 
-  static Map<String, Function> hotKeyFunctions = {};
+  static Map<String, Function> _hotKeyFunctions = {};
 
   static const MethodChannel _channel = MethodChannel('magnetica');
 
   static const EventChannel _eventChannel = EventChannel('magnetica/stream');
 
-  Stream<String>? _onStreamChanged;
+  static Stream<String>? _onStreamChanged;
 
-  void createStream() {
+  static void createStream() {
+    if (_onStreamChanged != null) {
+      return;
+    }
     _onStreamChanged ??= _eventChannel
         .receiveBroadcastStream()
         .map((dynamic event) => event as String);
     _onStreamChanged?.listen(_onEvent, onError: _onError);
   }
 
-  void _onEvent(Object? event) {
-    hotKeyFunctions[event]!();
+  static void _onEvent(Object? event) {
+    _hotKeyFunctions[event]!();
   }
 
-  void _onError(Object error) {
+  static void _onError(Object error) {
     print(error);
   }
 
@@ -48,14 +51,14 @@ class Magnetica {
       "keyCombo": keyCombo.encode,
       "hotKeyName": hotKeyName,
     });
-    hotKeyFunctions[hotKeyName] = hotKeyFunction;
+    _hotKeyFunctions[hotKeyName] = hotKeyFunction;
   }
 
   static Future<void> unregister({required String hotKeyName}) async {
     await _channel.invokeMethod('unregister', <String, dynamic>{
       "hotKeyName": hotKeyName,
     });
-    hotKeyFunctions.removeWhere((key, _) => key == hotKeyName);
+    _hotKeyFunctions.removeWhere((key, _) => key == hotKeyName);
   }
 
   static Future<void> get unregisterAll async {
@@ -65,7 +68,22 @@ class Magnetica {
 
 enum Modifier { shift, control, option, command }
 
-extension on Modifier {
+extension ModifierExtension on Modifier {
+  static Modifier fromString(String modifier) {
+    switch (modifier) {
+      case "shift":
+        return Modifier.shift;
+      case "control":
+        return Modifier.control;
+      case "option":
+        return Modifier.option;
+      case "command":
+        return Modifier.command;
+      default:
+        return throw "unsupported string";
+    }
+  }
+
   int encode() {
     switch (this) {
       case Modifier.shift:
@@ -94,6 +112,12 @@ extension on Modifiers {
 
 class KeyCombo {
   KeyCombo({required this.key, this.modifiers = const []});
+
+  static KeyCombo fromJSON(dynamic json) {
+
+    return KeyCombo(key: KeyCharacter.b, modifiers: [Modifier.command]);
+  }
+
 
   final KeyCharacter key;
   final Modifiers modifiers;
@@ -167,7 +191,129 @@ enum KeyCharacter {
   kana,
 }
 
-extension on KeyCharacter {
+extension KeyCharacterExtension on KeyCharacter {
+  static KeyCharacter fromString(String modifier) {
+    switch (modifier) {
+      case "1":
+        return KeyCharacter.one;
+      case "2":
+        return KeyCharacter.two;
+      case "3":
+        return KeyCharacter.three;
+      case "4":
+        return KeyCharacter.four;
+      case "5":
+        return KeyCharacter.five;
+      case "6":
+        return KeyCharacter.six;
+      case "7":
+        return KeyCharacter.seven;
+      case "8":
+        return KeyCharacter.eight;
+      case "9":
+        return KeyCharacter.nine;
+      case "0":
+        return KeyCharacter.zero;
+      case "-":
+        return KeyCharacter.hyphen;
+      case "^":
+        return KeyCharacter.circumflex;
+      case "\\":
+        return KeyCharacter.backslash;
+      case "q":
+        return KeyCharacter.q;
+      case "w":
+        return KeyCharacter.w;
+      case "e":
+        return KeyCharacter.e;
+      case "r":
+        return KeyCharacter.r;
+      case "t":
+        return KeyCharacter.t;
+      case "y":
+        return KeyCharacter.y;
+      case "u":
+        return KeyCharacter.u;
+      case "i":
+        return KeyCharacter.i;
+      case "o":
+        return KeyCharacter.o;
+      case "p":
+        return KeyCharacter.p;
+      case "@":
+        return KeyCharacter.atmark;
+      case "[":
+        return KeyCharacter.openingBracket;
+      case "a":
+        return KeyCharacter.a;
+      case "s":
+        return KeyCharacter.s;
+      case "d":
+        return KeyCharacter.d;
+      case "f":
+        return KeyCharacter.f;
+      case "g":
+        return KeyCharacter.g;
+      case "h":
+        return KeyCharacter.h;
+      case "j":
+        return KeyCharacter.j;
+      case "k":
+        return KeyCharacter.k;
+      case "l":
+        return KeyCharacter.l;
+      case ";":
+        return KeyCharacter.semicolon;
+      case ":":
+        return KeyCharacter.colon;
+      case "]":
+        return KeyCharacter.closingBracket;
+      case "z":
+        return KeyCharacter.z;
+      case "x":
+        return KeyCharacter.x;
+      case "c":
+        return KeyCharacter.c;
+      case "v":
+        return KeyCharacter.v;
+      case "b":
+        return KeyCharacter.b;
+      case "n":
+        return KeyCharacter.n;
+      case "m":
+        return KeyCharacter.m;
+      case ",":
+        return KeyCharacter.comma;
+      case ".":
+        return KeyCharacter.dot;
+      case "/":
+        return KeyCharacter.slash;
+      case "_":
+        return KeyCharacter.underscore;
+      case "tab":
+        return KeyCharacter.tab;
+      case "enter":
+        return KeyCharacter.enter;
+      case "backspace":
+        return KeyCharacter.backspace;
+      case "↑":
+        return KeyCharacter.up;
+      case "→":
+        return KeyCharacter.right;
+      case "↓":
+        return KeyCharacter.down;
+      case "←":
+        return KeyCharacter.left;
+      case "英数":
+        return KeyCharacter.eisu;
+      case "かな":
+        return KeyCharacter.kana;
+      default:
+        return throw "unsupported string";
+    }
+  }
+
+
   String encode() {
     switch (this) {
       case KeyCharacter.one:
