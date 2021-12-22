@@ -32,6 +32,17 @@ class _MyAppState extends State<MyApp> {
         });
   }
 
+  Future<void> registerCommandEnterHotKey() async {
+    final keyCombo =
+        KeyCombo(key: KeyCharacter.enter, modifiers: [Modifier.command]);
+    await Magnetica.register(
+        keyCombo: keyCombo,
+        hotKeyName: "commandEnter",
+        hotKeyFunction: () {
+          print("pressed command Enter");
+        });
+  }
+
   Future<void> unregisterCommandBHotKey() async {
     await Magnetica.unregister(hotKeyName: "commandB");
   }
@@ -70,6 +81,11 @@ class _MyAppState extends State<MyApp> {
               ElevatedButton(
                 child: const Text('Register shortcut ctrl+cmd+a'),
                 onPressed: registerCtrlCommandAHotKey,
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                child: const Text('Register shortcut cmd+enter'),
+                onPressed: registerCommandEnterHotKey,
               ),
               const SizedBox(height: 20),
               ElevatedButton(

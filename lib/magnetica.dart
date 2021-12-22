@@ -14,7 +14,7 @@ class Magnetica {
 
   Magnetica._private();
 
-  static Map<String, Function> _hotKeyFunctions = {};
+  static final Map<String, Function> _hotKeyFunctions = {};
 
   static const MethodChannel _channel = MethodChannel('magnetica');
 
@@ -37,7 +37,7 @@ class Magnetica {
   }
 
   static void _onError(Object error) {
-    print(error);
+    throw(error);
   }
 
   static Future<void> receiveBroadcastStream(
@@ -143,7 +143,7 @@ enum KeyCharacter {
   nine,
   zero,
   hyphen,
-  circumflex,
+  caret,
   backslash,
   q,
   w,
@@ -155,8 +155,8 @@ enum KeyCharacter {
   i,
   o,
   p,
-  atmark,
-  openingBracket,
+  at,
+  leftBracket,
   a,
   s,
   d,
@@ -168,7 +168,7 @@ enum KeyCharacter {
   l,
   semicolon,
   colon,
-  closingBracket,
+  rightBracket,
   z,
   x,
   c,
@@ -177,7 +177,7 @@ enum KeyCharacter {
   n,
   m,
   comma,
-  dot,
+  period,
   slash,
   underscore,
   tab,
@@ -217,7 +217,7 @@ extension KeyCharacterExtension on KeyCharacter {
       case "-":
         return KeyCharacter.hyphen;
       case "^":
-        return KeyCharacter.circumflex;
+        return KeyCharacter.caret;
       case "\\":
         return KeyCharacter.backslash;
       case "q":
@@ -241,9 +241,9 @@ extension KeyCharacterExtension on KeyCharacter {
       case "p":
         return KeyCharacter.p;
       case "@":
-        return KeyCharacter.atmark;
+        return KeyCharacter.at;
       case "[":
-        return KeyCharacter.openingBracket;
+        return KeyCharacter.leftBracket;
       case "a":
         return KeyCharacter.a;
       case "s":
@@ -267,7 +267,7 @@ extension KeyCharacterExtension on KeyCharacter {
       case ":":
         return KeyCharacter.colon;
       case "]":
-        return KeyCharacter.closingBracket;
+        return KeyCharacter.rightBracket;
       case "z":
         return KeyCharacter.z;
       case "x":
@@ -285,7 +285,7 @@ extension KeyCharacterExtension on KeyCharacter {
       case ",":
         return KeyCharacter.comma;
       case ".":
-        return KeyCharacter.dot;
+        return KeyCharacter.period;
       case "/":
         return KeyCharacter.slash;
       case "_":
@@ -338,7 +338,7 @@ extension KeyCharacterExtension on KeyCharacter {
         return "0";
       case KeyCharacter.hyphen:
         return "-";
-      case KeyCharacter.circumflex:
+      case KeyCharacter.caret:
         return "^";
       case KeyCharacter.backslash:
         return "\\";
@@ -362,9 +362,9 @@ extension KeyCharacterExtension on KeyCharacter {
         return "o";
       case KeyCharacter.p:
         return "p";
-      case KeyCharacter.atmark:
+      case KeyCharacter.at:
         return "@";
-      case KeyCharacter.openingBracket:
+      case KeyCharacter.leftBracket:
         return "[";
       case KeyCharacter.a:
         return "a";
@@ -388,7 +388,7 @@ extension KeyCharacterExtension on KeyCharacter {
         return ";";
       case KeyCharacter.colon:
         return ":";
-      case KeyCharacter.closingBracket:
+      case KeyCharacter.rightBracket:
         return "]";
       case KeyCharacter.z:
         return "z";
@@ -406,7 +406,7 @@ extension KeyCharacterExtension on KeyCharacter {
         return "m";
       case KeyCharacter.comma:
         return ",";
-      case KeyCharacter.dot:
+      case KeyCharacter.period:
         return ".";
       case KeyCharacter.slash:
         return "/";
