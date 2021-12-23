@@ -419,17 +419,17 @@ extension KeyCharacterExtension on KeyCharacter {
       case KeyCharacter.backspace:
         return "backspace";
       case KeyCharacter.up:
-        return "↑";
+        return "up";
       case KeyCharacter.right:
-        return "→";
+        return "right";
       case KeyCharacter.down:
-        return "↓";
+        return "down";
       case KeyCharacter.left:
-        return "←";
+        return "left";
       case KeyCharacter.eisu:
-        return "英数";
+        return "eisu";
       case KeyCharacter.kana:
-        return "かな";
+        return "kana";
       default:
         return "";
     }
