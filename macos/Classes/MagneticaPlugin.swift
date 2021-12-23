@@ -327,21 +327,21 @@ public final class MagneticaKeyCombo: NSObject, NSCopying, NSCoding, Codable {
             return kVK_PageDown
         case "F1":
             return kVK_F1
-        case "←":
+        case "left":
             return kVK_LeftArrow
-        case "→":
+        case "right":
             return kVK_RightArrow
-        case "↓":
+        case "down":
             return kVK_DownArrow
-        case "↑":
+        case "up":
             return kVK_UpArrow
         case "¥":
             return kVK_JIS_Yen
         case "_":
             return kVK_JIS_Underscore
-        case "英数":
+        case "eisu":
             return kVK_JIS_Eisu
-        case "かな":
+        case "kana":
             return kVK_JIS_Kana
         case "enter":
             return kVK_Return
