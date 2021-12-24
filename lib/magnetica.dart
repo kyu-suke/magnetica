@@ -296,17 +296,17 @@ extension KeyCharacterExtension on KeyCharacter {
         return KeyCharacter.enter;
       case "backspace":
         return KeyCharacter.backspace;
-      case "↑":
+      case "up":
         return KeyCharacter.up;
-      case "→":
+      case "right":
         return KeyCharacter.right;
-      case "↓":
+      case "down":
         return KeyCharacter.down;
-      case "←":
+      case "left":
         return KeyCharacter.left;
-      case "英数":
+      case "eisu":
         return KeyCharacter.eisu;
-      case "かな":
+      case "kana":
         return KeyCharacter.kana;
       default:
         return throw "unsupported string";
@@ -431,7 +431,7 @@ extension KeyCharacterExtension on KeyCharacter {
       case KeyCharacter.kana:
         return "kana";
       default:
-        return "";
+        return throw "unsupported KeyCharacter";
     }
   }
 }
