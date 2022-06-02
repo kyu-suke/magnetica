@@ -37,7 +37,7 @@ class Magnetica {
   }
 
   static void _onError(Object error) {
-    throw(error);
+    throw (error);
   }
 
   static Future<void> receiveBroadcastStream(
@@ -114,10 +114,8 @@ class KeyCombo {
   KeyCombo({required this.key, this.modifiers = const []});
 
   static KeyCombo fromJSON(dynamic json) {
-
     return KeyCombo(key: KeyCharacter.b, modifiers: [Modifier.command]);
   }
-
 
   final KeyCharacter key;
   final Modifiers modifiers;
@@ -312,7 +310,6 @@ extension KeyCharacterExtension on KeyCharacter {
         return throw "unsupported string";
     }
   }
-
 
   String encode() {
     switch (this) {

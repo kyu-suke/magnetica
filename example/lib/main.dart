@@ -74,28 +74,28 @@ class _MyAppState extends State<MyApp> {
             mainAxisSize: MainAxisSize.min,
             children: [
               ElevatedButton(
-                child: const Text('Register shortcut cmd+b'),
                 onPressed: registerCommandBHotKey,
+                child: const Text('Register shortcut cmd+b'),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
-                child: const Text('Register shortcut ctrl+cmd+a'),
                 onPressed: registerCtrlCommandAHotKey,
+                child: const Text('Register shortcut ctrl+cmd+a'),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
-                child: const Text('Register shortcut cmd+enter'),
                 onPressed: registerCommandEnterHotKey,
+                child: const Text('Register shortcut cmd+enter'),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
-                child: const Text('Unregister shortcut cmd+b'),
                 onPressed: unregisterCommandBHotKey,
+                child: const Text('Unregister shortcut cmd+b'),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
-                child: const Text('Clear shortcut'),
                 onPressed: unregister,
+                child: const Text('Clear shortcut'),
               ),
             ],
           ),

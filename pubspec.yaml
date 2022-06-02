@@ -1,7 +1,7 @@
 name: magnetica
 description: A new flutter plugin project.
 version: 0.0.1
-homepage:
+homepage: ""
 
 environment:
   sdk: ">=2.15.0-116.0.dev <3.0.0"
@@ -14,7 +14,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^1.0.0
+  flutter_lints: ^2.0.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
